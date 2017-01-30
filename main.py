@@ -39,11 +39,11 @@ class MainHandler(webapp2.RequestHandler):
         self.response.write(content)
     def post(self):
         message =self.request.get('message')
-        escaped_text = cgi.escape(message)
+#        escaped_text = cgi.escape(message)
         rotation = int(self.request.get('rotation'))
-        encrypted_text = caesar.encrypt(escaped_text,rotation)
-#        escaped_text = cgi.escape(encrypted_text)
-        content = build_page(encrypted_text)
+        encrypted_text = caesar.encrypt(message,rotation)
+        escaped_text = cgi.escape(encrypted_text)
+        content = build_page(escaped_text)
         self.response.write(content)
 
 app = webapp2.WSGIApplication([
